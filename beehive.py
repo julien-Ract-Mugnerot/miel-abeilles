@@ -34,8 +34,8 @@ class Honeycomb:
     # topXBees(int < (100-quantity)) : after sorting them best to worse, how many of your top ranked bees
     # will be able to reproduce and won't be able to mutate, to avoid loosing the best seeds.
     def __init__(self, csv_path='Champ de pissenlits et de sauge des pres.csv',\
-                 quantity = 50, loops=3, steps = [3], mutations = [1, 4], \
-                 mutations_starts = [500, 2000, 1, 2000] ,mut_status = True, topXBees = 25):
+                 quantity = 50, loops=3000, steps = [3, 4], mutations = [1, 2, 4], \
+                 mutations_starts = [500, 2000, 1, 2500] ,mut_status = True, topXBees = 25):
 
         self.flower_df = pd.read_excel(csv_path)
         self.flower_pos = list(zip(self.flower_df['x'],self.flower_df['y']))
@@ -460,6 +460,7 @@ class Honeycomb:
         temp_df = [(500, 500)] + df.loc[i, 'pos'] + [(500, 500)]
 
         x, y = zip(*temp_df)
+        plt.figure()
         plt.plot(x, y, marker='o', linestyle='', label='Points')
 
 
@@ -491,7 +492,7 @@ class Honeycomb:
     def plot_evolution(self):
         generations = list(map(int, self.score_table.keys()))
         performance = list(self.score_table.values())
-
+        plt.figure()
         plt.plot(generations, performance, color ="orange")  # Adjust marker as needed
         plt.xlabel('Generation')
         plt.ylabel('Mean Performance')
