@@ -34,8 +34,8 @@ class Honeycomb:
     # topXBees(int < (100-quantity)) : after sorting them best to worse, how many of your top ranked bees
     # will be able to reproduce and won't be able to mutate, to avoid loosing the best seeds.
     def __init__(self, csv_path='Champ de pissenlits et de sauge des pres.csv',\
-                 quantity = 50, loops=3000, steps = [3, 4], mutations = [1, 2, 4], \
-                 mutations_starts = [500, 2000, 1, 2500] ,mut_status = True, topXBees = 25):
+                 quantity = 50, loops=500, steps = [3, 4], mutations = [1, 2, 4], \
+                 mutations_starts = [220, 300, 1, 380] ,mut_status = True, topXBees = 25):
 
         self.flower_df = pd.read_excel(csv_path)
         self.flower_pos = list(zip(self.flower_df['x'],self.flower_df['y']))
